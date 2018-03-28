@@ -76,10 +76,10 @@ public class TestCaseProductSearch {
 		
 		//login use modules here
 		WebElement Login = driver.findElement(By.id("UserName"));
-		Login.sendKeys("npgomes@uncg.edu");
+		Login.sendKeys("******");
 		Thread.sleep(3000);
 		WebElement Password = driver.findElement(By.id("UserPwd"));
-		Password.sendKeys("Germany95!@");
+		Password.sendKeys("*******");
 		
 		WebElement Submit = driver.findElement(By.id("submit"));
 		Submit.click();
@@ -87,20 +87,20 @@ public class TestCaseProductSearch {
 		//Enters Credentials modules this
 		WebElement FirstName = driver.findElement(By.id("SFirstName"));
 		FirstName.click();
-		FirstName.sendKeys("Nelson");
+		FirstName.sendKeys("*****");
 		
 		
 		WebElement LastName = driver.findElement(By.id("SLastName"));
 		LastName.click();
-		LastName.sendKeys("Gomes");
+		LastName.sendKeys("******");
 		
 		WebElement Address = driver.findElement(By.id("SAddress1"));
 		Address.click();
-		Address.sendKeys("1609 Wright Avenue");
+		Address.sendKeys("*********");
 		
 		WebElement City = driver.findElement(By.id("SCity"));
 		City.click();
-		City.sendKeys("Greensboro");
+		City.sendKeys("***********");
 		Thread.sleep(2000);
 		
 		//selects dropbox menu
@@ -116,7 +116,7 @@ public class TestCaseProductSearch {
 		
 		WebElement Phone = driver.findElement(By.id("ShippingPhone"));
 		Phone.click();
-		Phone.sendKeys("9109206063");
+		Phone.sendKeys("*********");
 		
 		
 		
