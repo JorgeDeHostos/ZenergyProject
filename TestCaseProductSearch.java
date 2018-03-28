@@ -1,3 +1,4 @@
+import java.sql.Driver;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -5,6 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class TestCaseProductSearch {
 	public static void main(String[] args) throws InterruptedException {
@@ -39,22 +41,14 @@ public class TestCaseProductSearch {
 			String List = ProductList.getText();
 			System.out.println(List);
 		}
-		//clicks on the first product
 		Products.get(0).click();
 		Thread.sleep(2000);
 		
-		//adds the warranty and its optional depending on the product just uncomment and change ID element
-		//driver.findElement(By.id("CHECK_SNET-66000601")).click();
+	
 		
-		System.out.println("");
+		
 		//find add to cart tag and clicks it
 		List<WebElement> ClickAdd = driver.findElements(By.id("landingpage-cart"));
-		
-		System.out.println("This is the list for add to cart");
-		for (WebElement AddToCart : ClickAdd ) {
-		String List = AddToCart.getText();
-			System.out.println(List);
-		}
 		ClickAdd.get(0).click();
 		Thread.sleep(2000);
 		
@@ -80,19 +74,73 @@ public class TestCaseProductSearch {
 		
 		Thread.sleep(3000);
 		
-		//login use modules here and it works just replace username and password. Didn't want to upload my user and pass on github
+		//login use modules here
 		WebElement Login = driver.findElement(By.id("UserName"));
-		Login.sendKeys("*******");
+		Login.sendKeys("npgomes@uncg.edu");
 		Thread.sleep(3000);
-		
 		WebElement Password = driver.findElement(By.id("UserPwd"));
-		Password.sendKeys("*******");
+		Password.sendKeys("Germany95!@");
 		
 		WebElement Submit = driver.findElement(By.id("submit"));
 		Submit.click();
 		
+		//Enters Credentials modules this
+		WebElement FirstName = driver.findElement(By.id("SFirstName"));
+		FirstName.click();
+		FirstName.sendKeys("Nelson");
 		
-
+		
+		WebElement LastName = driver.findElement(By.id("SLastName"));
+		LastName.click();
+		LastName.sendKeys("Gomes");
+		
+		WebElement Address = driver.findElement(By.id("SAddress1"));
+		Address.click();
+		Address.sendKeys("1609 Wright Avenue");
+		
+		WebElement City = driver.findElement(By.id("SCity"));
+		City.click();
+		City.sendKeys("Greensboro");
+		Thread.sleep(2000);
+		
+		//selects dropbox menu
+		WebElement dropDownListBox = driver.findElement(By.id("SState_Option_USA"));
+		Select dropList = new Select(dropDownListBox);
+		dropList.selectByVisibleText("NORTH CAROLINA");
+		
+		
+		
+		WebElement ZipCode = driver.findElement(By.id("SZip"));
+		ZipCode.click();
+		ZipCode.sendKeys("27403");
+		
+		WebElement Phone = driver.findElement(By.id("ShippingPhone"));
+		Phone.click();
+		Phone.sendKeys("9109206063");
+		
+		
+		
+		
+		//unselect box
+		WebElement Unselect = driver.findElement(By.id("saveShipping"));
+		Unselect.click();
+		
+		//clicks continue billing
+		List <WebElement> Billing = driver.findElements(By.cssSelector("a[href^='javascript']"));	
+		WebElement C = null;
+		for(WebElement Continue : Billing) {
+			String List = Continue.getText();
+			System.out.println(List);
+			
+			if(List.contains("CONTINUE")) {
+				C = Continue;
+			}
+		}
+		C.click();
+		
+		
+		
+	
 		
 		
 }
