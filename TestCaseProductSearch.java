@@ -80,13 +80,13 @@ public class TestCaseProductSearch {
 		
 		Thread.sleep(3000);
 		
-		//login use modules here
+		//login use modules here and it works just replace username and password. Didn't want to upload my user and pass on github
 		WebElement Login = driver.findElement(By.id("UserName"));
-		Login.sendKeys("npgomes@uncg.edu");
+		Login.sendKeys("*******");
 		Thread.sleep(3000);
 		
 		WebElement Password = driver.findElement(By.id("UserPwd"));
-		Password.sendKeys("Germany95!@");
+		Password.sendKeys("*******");
 		
 		WebElement Submit = driver.findElement(By.id("submit"));
 		Submit.click();
