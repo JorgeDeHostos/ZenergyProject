@@ -28,7 +28,7 @@ public class TestCaseProductSearch {
 		WebElement Search = driver.findElement(By.id("haQuickSearchBox"));
 		
 		Search.click();
-		Search.sendKeys("ASUS ROG Strix Radeon RX 580 O8G Gaming OC Edition GDDR5 DP HDMI DVI VR Ready AMD Graphics Card with RGB Lighting (ROG-STRIX-RX580-O8G-GAMING)");
+		Search.sendKeys("AMD RX500");
 		Search.submit();
 		
 		//clicks on the first item on the list
@@ -43,8 +43,8 @@ public class TestCaseProductSearch {
 		Products.get(0).click();
 		Thread.sleep(2000);
 		
-		//adds the warranty
-		driver.findElement(By.id("CHECK_SNET-66000601")).click();
+		//adds the warranty and its optional depending on the product just uncomment and change ID element
+		//driver.findElement(By.id("CHECK_SNET-66000601")).click();
 		
 		System.out.println("");
 		//find add to cart tag and clicks it
@@ -60,13 +60,36 @@ public class TestCaseProductSearch {
 		
 		
 		//view shopping cart
-		driver.findElement(By.partialLinkText("$449.99 (1 Items)")).click();
+		driver.findElement(By.partialLinkText("(1 Items)")).click();
+	
+		// Clicks Secure Checkout 
+		List <WebElement> SecureCheckout = driver.findElements(By.cssSelector("a[href^='javascript']"));
+		WebElement Secure = null;
+	
+			for (WebElement SecureCheck : SecureCheckout) {
+				String List = SecureCheck.getText();
+				
+				System.out.println(List);
+				
+				if (List.contains("SECURE")) { 
+					Secure = SecureCheck;
+					System.out.println("Passed");
+				}
+			}
+		Secure.click();
 		
+		Thread.sleep(3000);
 		
+		//login use modules here
+		WebElement Login = driver.findElement(By.id("UserName"));
+		Login.sendKeys("npgomes@uncg.edu");
+		Thread.sleep(3000);
 		
+		WebElement Password = driver.findElement(By.id("UserPwd"));
+		Password.sendKeys("Germany95!@");
 		
-
-		
+		WebElement Submit = driver.findElement(By.id("submit"));
+		Submit.click();
 		
 		
 
