@@ -46,19 +46,16 @@ public class TestCaseCheckout {
 		modules.ClickSecureCheckout(driver);
 		
 		// login modules
-		modules.login(driver,"npgomes@uncg.edu","Germany95!@");
+		modules.Login(driver,"npgomes@uncg.edu","Germany95!@");
 		
 		//enters shipping credentials
-		String FName = "****";
-		String LName = "******";
-		String AddressLine1 = "*******";
-		String EnterCity = "******";
-		
-		
-		//Make sure you enter all caps for DropStateList to select specific state
-		String DropStateList = "*******";
-		String EnterZip = "********";
-		String PhoneNumber= "********";
+		String FName = "Nelson";
+		String LName = "Gomes";
+		String AddressLine1 = "1609 Wright Avenue";
+		String EnterCity = "Greensboro";
+		String DropStateList = "NORTH CAROLINA";
+		String EnterZip = "27403";
+		String PhoneNumber= "9109206063";
 		
 		
 		
@@ -70,9 +67,13 @@ public class TestCaseCheckout {
 		//clicks continue billing
 		modules.ClickContinueBilling(driver);
 		
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		
 		driver.quit();
+		
+		
+		// if all of the modules work it should display message that says the test has passed
+		modules.TestCasePassed();
 		
 	
 		

@@ -50,24 +50,28 @@ public class TestCaseGuestCheckout {
 		
 		
 		//fills in shipping address information
-		String FName= "******";
-		String LName = "*******";
-		String AddressLine1 = "*******";
-		String EnterCity = "*********";
+		String FName= "Nelson";
+		String LName = "Gomes";
+		String AddressLine1 = "1609 Wright Avenue";
+		String EnterCity = "Greensboro";
 		
 		//Make sure you enter all caps for DropStateList to select specific state
-		String DropStateList = "******";
-		String EnterZip = "********";
-		String PhoneNumber = "*********";
+		String DropStateList = "NORTH CAROLINA";
+		String EnterZip = "27403";
+		String PhoneNumber = "9109206063";
+		String UnregisteredEmail = "nelgomes1@hotmail.com";
 		
-		modules.GuestAddress(driver, js, wait, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber);
+		modules.GuestAddress(driver, js, wait, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber, UnregisteredEmail);
 		
 		//Clicks Continue Billing
 		modules.ClickContinueBilling(driver);
 		
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		
 		driver.quit();
+		
+		// if all of the modules work it should display message that says the test has passed
+		modules.TestCasePassed();
 		
 		
 }

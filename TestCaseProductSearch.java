@@ -40,9 +40,14 @@ public class TestCaseProductSearch {
 		//clicks on item list that you want to click on I decide to pick the 3rd item on the list
 		modules.ClickOnItem(driver, 3);
 		
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		
 		driver.quit();
+		
+		System.out.println("");
+		
+		// if all of the modules work it should display message that says the test has passed
+		modules.TestCasePassed();
 		
 		
 		
