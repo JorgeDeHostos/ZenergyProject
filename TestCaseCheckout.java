@@ -53,6 +53,9 @@ public class TestCaseCheckout {
 		String LName = "******";
 		String AddressLine1 = "*******";
 		String EnterCity = "******";
+		
+		
+		//Make sure you enter all caps for DropStateList to select specific state
 		String DropStateList = "*******";
 		String EnterZip = "********";
 		String PhoneNumber= "********";
