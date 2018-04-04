@@ -25,7 +25,7 @@ public class TestCaseLogin {
 		//clicks on login link
 		modules.ClickLoginAndRegister(driver);
 		
-		modules.Login(driver, "npgomes@uncg.edu", "Germany95!@");
+		modules.Login(driver, "*********", "*********");
 		
 		
 		
