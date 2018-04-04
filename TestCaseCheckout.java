@@ -46,7 +46,7 @@ public class TestCaseCheckout {
 		modules.ClickSecureCheckout(driver);
 		
 		// login modules
-		modules.login(driver,"npgomes@uncg.edu","Germany95!@");
+		modules.login(driver,"******","******");
 		
 		//enters shipping credentials
 		modules.ShippingAddress(driver,js);
