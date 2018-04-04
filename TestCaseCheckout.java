@@ -49,13 +49,13 @@ public class TestCaseCheckout {
 		modules.Login(driver,"npgomes@uncg.edu","Germany95!@");
 		
 		//enters shipping credentials
-		String FName = "Nelson";
-		String LName = "Gomes";
-		String AddressLine1 = "1609 Wright Avenue";
-		String EnterCity = "Greensboro";
-		String DropStateList = "NORTH CAROLINA";
-		String EnterZip = "27403";
-		String PhoneNumber= "9109206063";
+		String FName = "*****";
+		String LName = "******";
+		String AddressLine1 = "********";
+		String EnterCity = "*********";
+		String DropStateList = "***********";
+		String EnterZip = "**********";
+		String PhoneNumber= "*********";
 		
 		
 		
