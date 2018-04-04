@@ -50,15 +50,15 @@ public class TestCaseGuestCheckout {
 		
 		
 		//fills in shipping address information
-		String FName= "Nelson";
-		String LName = "Gomes";
-		String AddressLine1 = "1609 Wright Avenue";
-		String EnterCity = "Greensboro";
+		String FName= "******";
+		String LName = "*******";
+		String AddressLine1 = "*******";
+		String EnterCity = "*********";
 		
 		//Make sure you enter all caps for DropStateList to select specific state
-		String DropStateList = "NORTH CAROLINA";
-		String EnterZip = "27403";
-		String PhoneNumber = "9109206063";
+		String DropStateList = "******";
+		String EnterZip = "********";
+		String PhoneNumber = "*********";
 		
 		modules.GuestAddress(driver, js, wait, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber);
 		
