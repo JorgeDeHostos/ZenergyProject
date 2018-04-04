@@ -38,8 +38,8 @@ public class TestCaseRegister {
 		
 		
 		//inputs Registration information
-		String email = "npgomes@uncg.edu";
-		String password = "Germany434!@";
+		String email = "*********";
+		String password = "********";
 		modules.RegistrationInformation(driver, email, password);
 		
 		
