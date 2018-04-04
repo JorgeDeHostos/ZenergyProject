@@ -25,7 +25,7 @@ public class TestCaseLogin {
 		//clicks on login link
 		driver.findElement(By.partialLinkText("Log in or Register")).click();
 		
-		modules.login(driver, "npgomes@uncg.edu", "Germany95!@");
+		modules.login(driver, "*******", "*******");
 		
 		
 		
