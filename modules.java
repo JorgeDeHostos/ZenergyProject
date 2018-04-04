@@ -154,43 +154,43 @@ public class modules {
 	
 	
 	
-	public static void ShippingAddress(WebDriver driver, JavascriptExecutor js) throws InterruptedException{
+	public static void ShippingAddress(WebDriver driver, JavascriptExecutor js, String FName, String LName, String AddressLine1, String EnterCity, String DropStateList, String EnterZip, String PhoneNumber) throws InterruptedException{
 		//Enters Credentials modules this
 		WebElement FirstName = driver.findElement(By.id("SFirstName"));
 		FirstName.click();
-		FirstName.sendKeys("Nelson");
+		FirstName.sendKeys(FName);
 		
 		
 		WebElement LastName = driver.findElement(By.id("SLastName"));
 		LastName.click();
-		LastName.sendKeys("Gomes");
+		LastName.sendKeys(LName);
 		
 		WebElement AddressLineOne = driver.findElement(By.id("SAddress1"));
 		AddressLineOne.click();
-		AddressLineOne.sendKeys("1609 Wright Avenue");
+		AddressLineOne.sendKeys(AddressLine1);
 		
 		WebElement City = driver.findElement(By.id("SCity"));
 		City.click();
-		City.sendKeys("Greensboro");
+		City.sendKeys(EnterCity);
 		Thread.sleep(2000);
 		
 		//selects dropbox menu
 		WebElement dropDownListBox = driver.findElement(By.id("SState_Option_USA"));
 		Select dropList = new Select(dropDownListBox);
-		dropList.selectByVisibleText("NORTH CAROLINA");
+		dropList.selectByVisibleText(DropStateList);
 		Thread.sleep(2000);
 		
 		
 		WebElement ZipCode = driver.findElement(By.id("SZip"));
 		ZipCode.click();
-		ZipCode.sendKeys("27403");
+		ZipCode.sendKeys(EnterZip);
 		Thread.sleep(2000);
 		
 		js.executeScript("window.scrollBy(0,2000)");
 
 		WebElement Phone = driver.findElement(By.name("ShippingPhone"));
 		Phone.click();
-		Phone.sendKeys("9109206063");
+		Phone.sendKeys(PhoneNumber);
 		
 		
 		
@@ -199,45 +199,46 @@ public class modules {
 		Unselect.click();
 	}
 	
-	public static void GuestAddress(WebDriver driver, JavascriptExecutor js, WebDriverWait wait ) throws InterruptedException {
+	public static void GuestAddress(WebDriver driver, JavascriptExecutor js, WebDriverWait wait, String FName, String LName, String AddressLine1, String EnterCity, String DropStateList, String EnterZip, String PhoneNumber ) throws InterruptedException {
 		
 		
 		//inputs first name
 		WebElement FirstName = driver.findElement(By.name("SFirstName"));
 		FirstName.clear();
-		FirstName.sendKeys("Nelson");
+		FirstName.sendKeys(FName);
 		
 		//inputs last name
 		WebElement LastName = driver.findElement(By.name("SLastName"));
 		LastName.click();
-		LastName.sendKeys("Gomes");
+		LastName.sendKeys(LName);
 		
 		
 		//inputs text to address line one
 		WebElement AddressLineOne = driver.findElement(By.name("SAddress1"));
 		AddressLineOne.click();
-		AddressLineOne.sendKeys("1609 Wright Avenue");
+		AddressLineOne.sendKeys(AddressLine1);
 		
 		//inputs City
 		WebElement City = driver.findElement(By.name("SCity"));
 		City.click();
-		City.sendKeys("Greensboro");
+		City.sendKeys(EnterCity);
 		
-		//inputs NORTH CAROLINA on dropdown box
+		//inputs STATE on dropdown box
 		WebElement dropDownListBox = driver.findElement(By.id("SState_Option_USA"));
 		Select dropList = new Select(dropDownListBox);
-		dropList.selectByVisibleText("NORTH CAROLINA");
+		dropList.selectByVisibleText(DropStateList);
+		Thread.sleep(2000);
 		
 		//inputs zipcode
 		WebElement ZipCode = driver.findElement(By.name("SZip"));
 		ZipCode.click();
-		ZipCode.sendKeys("27403");
+		ZipCode.sendKeys(EnterZip);
 		Thread.sleep(2000);
 		
 		//inputs phone number
 		WebElement Phone = driver.findElement(By.name("ShippingPhone"));
 		Phone.click();
-		Phone.sendKeys("9109206063");
+		Phone.sendKeys(PhoneNumber);
 		Thread.sleep(4000);
 		
 		js.executeScript("window.scrollBy(0,2000)");
