@@ -294,6 +294,8 @@ public class modules {
 	
 	
 
+	
+	//clicks Create New Account after the log in and register link
 	public static void ClickCreateNewAccount(WebDriver driver) {
 		List <WebElement> ClickCreateAccount = driver.findElements(By.name("submit"));
 		ClickCreateAccount.get(1).click();
@@ -302,7 +304,7 @@ public class modules {
 	
 	
 	
-	
+	//inputs registrations information
 	public static void RegistrationInformation(WebDriver driver, String email, String password ) {
 		WebElement Email = driver.findElement(By.name("LoginName"));
 		Email.click();
@@ -324,6 +326,8 @@ public class modules {
 	}
 	
 	
+	
+	//Clicks on Create Account after registration information input
 	public static void ClickCreateAccount(WebDriver driver) {
 		List <WebElement> CreateAccount = driver.findElements(By.cssSelector("a[href^='javascript']"));
 		WebElement C = null;
@@ -342,6 +346,8 @@ public class modules {
 	}
 	
 	
+	
+	//Test Case Pass Message
 	public static void TestCasePassed() {
 		System.out.println("This test case passed all of its credentials");
 	}
