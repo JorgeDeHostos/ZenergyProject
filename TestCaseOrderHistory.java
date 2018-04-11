@@ -1,9 +1,13 @@
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
-public class TestCaseLogin {
+public class TestCaseOrderHistory {
 	public static void main(String[] args) throws InterruptedException {
 		String os = System.getProperty("os.name").toLowerCase();
 		//implements google chrome
@@ -17,28 +21,25 @@ public class TestCaseLogin {
 		}
 		
 		WebDriver driver = new ChromeDriver();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
-		
-		//opens newegg
+		//open NewEgg
 		modules.OpenNewEgg(driver);
 		
-		//clicks on login link
-		modules.ClickLoginAndRegister(driver);
 		
-		modules.Login(driver, "npgomes@uncg.edu", "Germany95!@");
+		//click track order	
+		modules.ClickTrackOrder(driver);
 		
+		//login information
+		modules.Login(driver, "jmdehost@uncg.edu", "Jdh005546!");
 		
+		//selects drop down box and clicks all
+		modules.SelectOrderTimeFrame(driver, js);
 		
-		Thread.sleep(5000);
+		Thread.sleep(4000);
 		driver.quit();
 		
-		// if all of the modules work it should display message that says the test has passed
 		modules.TestCasePassed();
 		
-			
-		}
-	
-	}
-	
-	
-
+}
+}

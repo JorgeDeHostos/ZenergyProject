@@ -32,21 +32,20 @@ public class TestCaseRegister {
 		//Clicks on Log in and Register link
 		modules.ClickLoginAndRegister(driver);
 		
-		//Clicks on create new account
-		modules.ClickCreateNewAccount(driver);
+		//Clicks on sign up link
+		WebElement SignUp = driver.findElement(By.partialLinkText("Sign up"));
+		SignUp.click();
 		
 		
+		//inputs information for registering and clicks signup
+		String FName = "Nelson";
+		String LName = "Gomes";
+		String InputEmail = "npgomes@uncg.edu";
+		String Pass = "Germany95!@";
 		
-		//inputs Registration information
-		String email = "*********";
-		String password = "********";
-		modules.RegistrationInformation(driver, email, password);
+		modules.InputRegistrationInfo(driver, FName, LName, InputEmail, Pass);
 		
 		
-		
-		
-		//Clicks create account
-		modules.ClickCreateAccount(driver);
 		
 		//sleeps for 5 seconds before moving onto the next method
 		Thread.sleep(5000);
@@ -61,3 +60,5 @@ public class TestCaseRegister {
 }
 	
 }
+	
+

@@ -71,17 +71,9 @@ public class modules {
 	
 	//clicks guest checkout
 	public static void ClickGuestCheckout(WebDriver driver) {
-
-		List <WebElement> Guest = driver.findElements(By.cssSelector("a[href^='javascript']"));	
-		WebElement C = null;
-		for(WebElement Click : Guest) {
-			String List = Click.getText();
-			
-			if(List.contains("GUEST")) {
-				C = Click;
-			}
-		}
-		C.click();
+		
+		WebElement Click = driver.findElement(By.xpath("//button[contains(.,'Continue as a Guest')]"));
+		Click.click();
 	}
 	
 	
@@ -148,7 +140,7 @@ public class modules {
 				WebElement Password = driver.findElement(By.id("UserPwd"));
 				Password.sendKeys(Pass);
 				
-				WebElement Submit = driver.findElement(By.id("submit"));
+				WebElement Submit = driver.findElement(By.id("submitLogin"));
 				Submit.click();
 	}
 	
@@ -294,56 +286,11 @@ public class modules {
 	
 	
 
-	
-	//clicks Create New Account after the log in and register link
-	public static void ClickCreateNewAccount(WebDriver driver) {
-		List <WebElement> ClickCreateAccount = driver.findElements(By.name("submit"));
-		ClickCreateAccount.get(1).click();
-	}
+
 	
 	
 	
-	
-	//inputs registrations information
-	public static void RegistrationInformation(WebDriver driver, String email, String password ) {
-		WebElement Email = driver.findElement(By.name("LoginName"));
-		Email.click();
-		Email.sendKeys(email);
-		
-		
-		WebElement ReEnterEmail = driver.findElement(By.name("LoginName1"));
-		ReEnterEmail.click();
-		ReEnterEmail.sendKeys(email);
-		
-		WebElement Password = driver.findElement(By.name("Password"));
-		Password.click();
-		Password.sendKeys(password);
-		
-		WebElement ReEnterPassword = driver.findElement(By.name("Password1"));
-		ReEnterPassword.click();
-		ReEnterPassword.sendKeys(password);
-		
-	}
-	
-	
-	
-	//Clicks on Create Account after registration information input
-	public static void ClickCreateAccount(WebDriver driver) {
-		List <WebElement> CreateAccount = driver.findElements(By.cssSelector("a[href^='javascript']"));
-		WebElement C = null;
-		for(WebElement Create : CreateAccount) {
-			String List = Create.getText();
-			System.out.println(List);
-			
-			if(List.contains("CREATE")) {
-				C = Create;
-			}
-		
-		
-		}
-		C.click();
-		
-	}
+
 	
 	
 	
@@ -352,4 +299,114 @@ public class modules {
 		System.out.println("This test case passed all of its credentials");
 	}
 	
+	//clicks on track order on the webpage
+	public static void ClickTrackOrder(WebDriver driver) {
+		WebElement TrackOrder = driver.findElement(By.id("trackOrder"));
+		TrackOrder.click();
+	}
+	
+	
+	//selects order time frame
+	public static void SelectOrderTimeFrame(WebDriver driver, JavascriptExecutor js) {
+		WebElement dropDownListBox = driver.findElement(By.name("selectOrderTimeRegion"));
+		Select dropList = new Select(dropDownListBox);
+		dropList.selectByVisibleText("All");
+		dropDownListBox.submit();
+		js.executeScript("window.scrollBy(0,300)");
+		
+	}
+	
+	//inputs order number information for guests or without login
+	public static void OrderNumberInformation(WebDriver driver, String OrderNumber, String ZipCodeOREmail) {
+		int ok_size=driver.findElements(By.name("GuestOrderNumber")).size();
+		List<WebElement> Order = driver.findElements(By.name("GuestOrderNumber"));
+		Order.get(ok_size-1).sendKeys(OrderNumber);
+		
+		WebElement ZipOrEmail = driver.findElement(By.name("GuestEmailZipCode"));
+		ZipOrEmail.sendKeys(ZipCodeOREmail);
+	
+	}
+	
+	
+	public static void ClickFindHistory(WebDriver driver) {
+//		List <WebElement> ClickFindHistory = driver.findElements(By.cssSelector("a[href^='javascript']"));	
+//		WebElement C = null;
+//		for(WebElement Click : ClickFindHistory) {
+//			String List = Click.getText();
+//			if(List.contains("FIND MY ORDER")) {
+//				C = Click;
+//			}
+//		}
+//		C.click();
+		WebElement Click = driver.findElement(By.xpath("//button[contains(.,'Find My Order ')]"));
+		Click.click();
+	}
+	
+	
+	
+	//clicks on 72 deals link on the webpage
+	public static void ClickOnSeventyTwoDeals(WebDriver driver, JavascriptExecutor js ) throws InterruptedException {
+		List <WebElement> SeventyTwoDeals = driver.findElements(By.cssSelector("a[href^='//www.newegg.com/DailyDeal.aspx?name=DailyDeal&cm_sp=Dailydeal-_-adlink-_-04112018']"));
+		SeventyTwoDeals.get(0).click();
+		Thread.sleep(3000);
+		
+	}
+	public static void dropDownDeals(WebDriver driver, JavascriptExecutor js ) throws InterruptedException {
+		WebElement dropDownInStock = driver.findElement(By.id("Order_top"));
+		Select inStock = new Select(dropDownInStock);
+		inStock.selectByVisibleText("In Stock");
+		js.executeScript("window.scrollBy(0,300)");
+		Thread.sleep(3000);
+		
+		
+		WebElement dropDownLowestPrice = driver.findElement(By.id("Order_top"));
+		Select LowestPrice = new Select(dropDownLowestPrice);
+		LowestPrice.selectByVisibleText("Lowest Price");
+		js.executeScript("window.scrollBy(0,300)");
+		Thread.sleep(3000);
+		
+		WebElement dropDownHighestPrice = driver.findElement(By.id("Order_top"));
+		Select HighestPrice = new Select(dropDownHighestPrice);
+		HighestPrice.selectByVisibleText("Highest Price");
+		js.executeScript("window.scrollBy(0,300)");
+		Thread.sleep(3000);
+		
+		WebElement dropDownBestRating = driver.findElement(By.id("Order_top"));
+		Select BestRating = new Select(dropDownBestRating);
+		BestRating.selectByVisibleText("Best Rating");
+		js.executeScript("window.scrollBy(0,300)");
+		Thread.sleep(3000);
+		
+		
+		WebElement dropDownMostReview = driver.findElement(By.id("Order_top"));
+		Select MostReview = new Select(dropDownMostReview);
+		MostReview.selectByVisibleText("Most Reviews");
+		js.executeScript("window.scrollBy(0,300)");
+		Thread.sleep(5000);
+
+	
+	}
+	
+	
+	public static void InputRegistrationInfo(WebDriver driver, String FName, String LName, String InputEmail, String Pass) throws InterruptedException {
+		
+		WebElement FirstName = driver.findElement(By.name("FirstName"));
+		FirstName.sendKeys(FName);
+		Thread.sleep(3000);
+		
+		WebElement LastName = driver.findElement(By.name("LastName"));
+		LastName.sendKeys(LName);
+		Thread.sleep(3000);
+		
+		WebElement Email = driver.findElement(By.name("LoginName"));
+		Email.sendKeys(InputEmail);
+		Thread.sleep(3000);
+		
+		WebElement Password = driver.findElement(By.name("Password"));
+		Password.sendKeys(Pass);
+		Thread.sleep(3000);
+		
+		WebElement Click = driver.findElement(By.id("submitRegistration"));
+		Click.click();
+	}
 }

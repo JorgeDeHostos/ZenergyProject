@@ -1,4 +1,3 @@
-
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -29,11 +28,11 @@ public class TestCaseCheckout {
 		modules.OpenNewEgg(driver);
 		
 		//product search
-		modules.ProductSearch(driver,"Tower");
+		modules.ProductSearch(driver,"Full Tower");
 		
 		
 		//clicks on the first item on the list and list items on the webpage
-		modules.ClickOnItem(driver, 1);
+		modules.ClickOnItem(driver, 3);
 		
 		
 		//find add to cart id and clicks it
@@ -49,17 +48,14 @@ public class TestCaseCheckout {
 		modules.Login(driver,"npgomes@uncg.edu","Germany95!@");
 		
 		//enters shipping credentials
-		String FName = "*****";
-		String LName = "******";
-		String AddressLine1 = "********";
-		String EnterCity = "*********";
-		String DropStateList = "***********";
-		String EnterZip = "**********";
-		String PhoneNumber= "*********";
-		
-		
-		
-		
+		String FName = "Nelson";
+		String LName = "Gomes";
+		String AddressLine1 = "1609 Wright Avenue";
+		String EnterCity = "Greensboro";
+		//make sure the state is in all caps
+		String DropStateList = "NORTH CAROLINA";
+		String EnterZip = "27403";
+		String PhoneNumber= "9109206063";
 		modules.ShippingAddress(driver, js, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber);
 	
 		

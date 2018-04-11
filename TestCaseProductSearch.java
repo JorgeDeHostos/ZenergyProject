@@ -44,8 +44,6 @@ public class TestCaseProductSearch {
 		
 		driver.quit();
 		
-		System.out.println("");
-		
 		// if all of the modules work it should display message that says the test has passed
 		modules.TestCasePassed();
 		

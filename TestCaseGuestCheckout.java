@@ -29,11 +29,11 @@ public class TestCaseGuestCheckout {
 		modules.OpenNewEgg(driver);
 		
 		//product search
-		modules.ProductSearch(driver, "Tower");
+		modules.ProductSearch(driver, "Full Tower");
 		
 		
 		//clicks on the first item on the list and list items on the webpage
-		modules.ClickOnItem(driver,1);
+		modules.ClickOnItem(driver,3);
 		
 		
 		//find add to cart id and clicks it
@@ -47,19 +47,19 @@ public class TestCaseGuestCheckout {
 		
 		// Clicks Guest Checkout
 		modules.ClickGuestCheckout(driver);
-		
+	
 		
 		//fills in shipping address information
-		String FName= "******";
-		String LName = "*******";
-		String AddressLine1 = "********";
-		String EnterCity = "*******";
+		String FName= "Nelson";
+		String LName = "Gomes";
+		String AddressLine1 = "1609 Wright Avenue";
+		String EnterCity = "Greensboro";
 		
 		//Make sure you enter all caps for DropStateList to select specific state
-		String DropStateList = "********";
-		String EnterZip = "*******";
-		String PhoneNumber = "********";
-		String UnregisteredEmail = "********";
+		String DropStateList = "NORTH CAROLINA";
+		String EnterZip = "27403";
+		String PhoneNumber = "9109206063";
+		String UnregisteredEmail = "nelgomes1@hotmail.com";
 		
 		modules.GuestAddress(driver, js, wait, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber, UnregisteredEmail);
 		
