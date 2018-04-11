@@ -37,7 +37,7 @@ public class TestCaseProductSearch {
 		//list the items on the webpage
 		modules.ListItemOnProductSearch(driver);
 		
-		//clicks on item list that you want to click on I decide to pick the 3rd item on the list
+		//clicks on item list that you want to click on I decide to pick the 1st item on the list
 		modules.ClickOnItem(driver, 3);
 		
 		Thread.sleep(5000);
