@@ -1,8 +1,13 @@
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
-public class TestCaseProductSearch {
+public class TestCaseAddressBook {
 	public static void main(String[] args) throws InterruptedException {
 		String os = System.getProperty("os.name").toLowerCase();
 		//implements google chrome
@@ -18,36 +23,31 @@ public class TestCaseProductSearch {
 		WebDriver driver = new ChromeDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
-		
-		//opens newegg
+		//opens newegg.com
 		modules.OpenNewEgg(driver);
 		
-		//searches string that you want to search
-		modules.ProductSearch(driver, "Tower");
+		//clicks address book
+		WebElement ClickAddressBook = driver.findElement(By.partialLinkText("Address Book"));
+		ClickAddressBook.click();
 		
-		//checks valid title of the page and product matches
-		modules.CheckTitleOnPage(driver, "Tower - Newegg.com");
+		//login information
+		modules.Login(driver, "npgomes@uncg.edu", "Germany95!@");
 		
-		System.out.println("");
-
-
+		//clicks add new address and inputs information
+		modules.InputNewAddressInformation(driver);
 		
+		//searches address book for other addresses
+		modules.findAddress(driver);
 		
-		
-		//list the items on the webpage
-		modules.ListItemOnProductSearch(driver);
-		
-		//clicks on item list that you want to click on I decide to pick the 3rd item on the list
-		modules.ClickOnItem(driver, 3);
 		
 		Thread.sleep(5000);
 		
 		driver.quit();
 		
-		// if all of the modules work it should display message that says the test has passed
 		modules.TestCasePassed();
 		
 		
-		
-}
+	
+	}
+
 }

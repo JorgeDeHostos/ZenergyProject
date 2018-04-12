@@ -153,7 +153,10 @@ public class modules {
 	
 	// inputs information for an actual account
 	public static void ShippingAddress(WebDriver driver, JavascriptExecutor js, String FName, String LName, String AddressLine1, String EnterCity, String DropStateList, String EnterZip, String PhoneNumber) throws InterruptedException{
-		
+		//clicks radio button
+		WebElement Radio = driver.findElement(By.id("shippingAddressAdd"));
+		Radio.click();
+		Thread.sleep(3000);
 		
 		//inputs first name
 		WebElement FirstName = driver.findElement(By.id("SFirstName"));
@@ -408,5 +411,86 @@ public class modules {
 		
 		WebElement Click = driver.findElement(By.id("submitRegistration"));
 		Click.click();
+	}
+	
+	public static void InputNewAddressInformation(WebDriver driver) throws InterruptedException {
+		WebElement ClickAddNewAddress = driver.findElement(By.id("addAddrLink"));
+		ClickAddNewAddress.click();
+		
+		WebElement FirstName = driver.findElement(By.name("SFirstName"));
+		FirstName.sendKeys("Nelson");
+		Thread.sleep(3000);
+		
+		WebElement MiddleName = driver.findElement(By.name("SMI"));
+		MiddleName.sendKeys("Patrick");
+		Thread.sleep(3000);
+		
+		WebElement LastName = driver.findElement(By.name("SLastName"));
+		LastName.sendKeys("Gomes");
+		Thread.sleep(3000);
+		
+		WebElement AddressLineOne = driver.findElement(By.name("SAddress1"));
+		AddressLineOne.sendKeys("1609 Wright Avenue");
+		Thread.sleep(3000);
+		
+		WebElement City = driver.findElement(By.name("SCity"));
+		City.sendKeys("Greensboro");
+		
+		WebElement dropDownListBox = driver.findElement(By.name("SState"));
+		Select dropList = new Select(dropDownListBox);
+		dropList.selectByVisibleText("NORTH CAROLINA");
+		Thread.sleep(3000);
+		
+		WebElement ZipCode = driver.findElement(By.name("SZip"));
+		ZipCode.sendKeys("27403");
+		Thread.sleep(3000);
+		
+		WebElement TelOne = driver.findElement(By.name("ShippingPhone_tel1"));
+		TelOne.sendKeys("910");
+		Thread.sleep(1000);
+		
+		WebElement TelTwo = driver.findElement(By.name("ShippingPhone_tel2"));
+		TelTwo.sendKeys("920");
+		Thread.sleep(1000);
+		
+		WebElement TelThree = driver.findElement(By.name("ShippingPhone_tel3"));
+		TelThree.sendKeys("6063");
+		Thread.sleep(1000);
+		
+		WebElement NameAddress = driver.findElement(By.name("SLabel"));
+		NameAddress.sendKeys("Main Address");
+		Thread.sleep(3000);
+		
+		List <WebElement> ClickSave = driver.findElements(By.cssSelector("a[href^='javascript']"));
+		WebElement c = null;
+	
+			for (WebElement Click : ClickSave) {
+				String List = Click.getText();
+				if (List.contains("Save")) { 
+					c = Click;
+					
+				}
+			}
+			c.click();
+	}
+	
+	
+	public static void findAddress(WebDriver driver) {
+		WebElement FindAddress = driver.findElement(By.name("keyword"));
+		FindAddress.sendKeys("Old Address");
+		
+		
+		List<WebElement> ClickGo = driver.findElements(By.cssSelector("a[href^='javascript']"));
+		WebElement C = null;
+		for (WebElement Click : ClickGo) {
+			String List = Click.getText();
+			
+			
+			if(List.contains("Go")) {
+				C = Click;	
+			}
+			
+		}
+		C.click();
 	}
 }
