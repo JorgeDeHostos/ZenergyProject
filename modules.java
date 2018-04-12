@@ -41,7 +41,7 @@ public class modules {
 	
 	//find add to cart id and clicks it
 	public static void ClickAddToCart(WebDriver driver) throws InterruptedException {
-						List<WebElement> ClickAdd = driver.findElements(By.id("landingpage-cart"));
+				List<WebElement> ClickAdd = driver.findElements(By.id("landingpage-cart"));
 				ClickAdd.get(0).click();
 				Thread.sleep(2000);
 	}
@@ -330,24 +330,15 @@ public class modules {
 	
 	}
 	
-	
+	//clicks find history
 	public static void ClickFindHistory(WebDriver driver) {
-//		List <WebElement> ClickFindHistory = driver.findElements(By.cssSelector("a[href^='javascript']"));	
-//		WebElement C = null;
-//		for(WebElement Click : ClickFindHistory) {
-//			String List = Click.getText();
-//			if(List.contains("FIND MY ORDER")) {
-//				C = Click;
-//			}
-//		}
-//		C.click();
 		WebElement Click = driver.findElement(By.xpath("//button[contains(.,'Find My Order ')]"));
 		Click.click();
 	}
 	
 	
 	
-	//clicks on 72 deals link on the webpage
+	//clicks on 72 deals link on the homepage
 	public static void ClickOnSeventyTwoDeals(WebDriver driver, JavascriptExecutor js ) throws InterruptedException {
 		List <WebElement> SeventyTwoDeals = driver.findElements(By.cssSelector("a[href^='//www.newegg.com/DailyDeal.aspx?name=DailyDeal&cm_sp=Dailydeal-_-adlink-_-04112018']"));
 		SeventyTwoDeals.get(0).click();
@@ -474,10 +465,10 @@ public class modules {
 			c.click();
 	}
 	
-	
-	public static void findAddress(WebDriver driver) {
+	//finds specific address
+	public static void findAddress(WebDriver driver, String Name) {
 		WebElement FindAddress = driver.findElement(By.name("keyword"));
-		FindAddress.sendKeys("Old Address");
+		FindAddress.sendKeys(Name);
 		
 		
 		List<WebElement> ClickGo = driver.findElements(By.cssSelector("a[href^='javascript']"));
@@ -492,5 +483,46 @@ public class modules {
 			
 		}
 		C.click();
+	}
+	
+	public static void ViewEditAddress(WebDriver driver) {
+		List <WebElement> ViewEdit = driver.findElements(By.cssSelector("a[href^='javascript']"));
+		WebElement C = null;
+		for(WebElement View : ViewEdit) {
+			String List = View.getText();
+			if(List.contains("edit")) {
+				C = View;
+				
+			}
+		}
+		C.click();
+	}
+	
+	//deletes the searched up address
+	public static void ClickDeleteAddress(WebDriver driver) throws InterruptedException {
+		List <WebElement> Delete = driver.findElements(By.cssSelector("a[href^='javascript'"));
+		WebElement D = null;
+		for (WebElement Del: Delete) {
+			String List = Del.getText();
+			
+			if(List.contains("Delete")) {
+				D = Del;
+			}
+		}
+		D.click();
+		Thread.sleep(3000);
+		
+		List <WebElement> Yes = driver.findElements(By.cssSelector("a[href^='javascript'"));
+		WebElement Y = null;
+		for (WebElement yes : Yes) {
+			String List = yes.getText();
+			
+			if(List.contains("Yes")) {
+				Y = yes;
+			}
+		}
+		Y.click();
+			
+			
 	}
 }

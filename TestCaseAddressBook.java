@@ -37,14 +37,26 @@ public class TestCaseAddressBook {
 		modules.InputNewAddressInformation(driver);
 		
 		//searches address book for other addresses
-		modules.findAddress(driver);
+		modules.findAddress(driver, "Old Address");
 		
+		
+		driver.findElement(By.name("keyword")).clear();
+		
+		
+		modules.findAddress(driver, "Main Address");
+		
+		//clicks view edit to see address
+		modules.ViewEditAddress(driver);
+		
+	
+		//clicks delete and yes
+		modules.ClickDeleteAddress(driver);
 		
 		Thread.sleep(5000);
-		
 		driver.quit();
 		
 		modules.TestCasePassed();
+
 		
 		
 	
