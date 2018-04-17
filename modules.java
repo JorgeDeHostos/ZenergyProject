@@ -340,7 +340,7 @@ public class modules {
 	
 	//clicks on 72 deals link on the homepage
 	public static void ClickOnSeventyTwoDeals(WebDriver driver, JavascriptExecutor js ) throws InterruptedException {
-		List <WebElement> SeventyTwoDeals = driver.findElements(By.cssSelector("a[href^='//www.newegg.com/DailyDeal.aspx?name=DailyDeal&cm_sp=Dailydeal-_-adlink-_-04112018']"));
+		List <WebElement> SeventyTwoDeals = driver.findElements(By.cssSelector("a[href^='//www.newegg.com/DailyDeal.aspx?name=DailyDeal&cm_sp=Dailydeal-_-adlink-_-04162018']"));
 		SeventyTwoDeals.get(0).click();
 		Thread.sleep(3000);
 		
@@ -525,4 +525,55 @@ public class modules {
 			
 			
 	}
+	
+	
+	//clicks My Dashboard on the homepage
+	
+	public static void ClickMyDashboard(WebDriver driver) {
+		WebElement Dashboard = driver.findElement(By.partialLinkText("My Dashboard"));
+		Dashboard.click();
+	}
+	
+	//clicks account settings 
+	public static void ClickAccountSettings(WebDriver driver) {
+		WebElement Settings = driver.findElement(By.partialLinkText("Account Settings"));
+		Settings.click();
+		
+	}
+	
+	
+	
+	//clicks on edit password
+	public static void ClickEditPassword(WebDriver driver) throws InterruptedException {
+		List <WebElement> ClickEditPassword = driver.findElements(By.xpath("//button[contains(.,'Edit')]"));
+		ClickEditPassword.get(2).click();
+		Thread.sleep(3000);
+	}
+	
+	//Fills in old password and new password
+	public static void EditPassword(WebDriver driver, String OldPassword, String NewPassword, String ReEnterNewPassword) throws InterruptedException {
+		int ok_size=driver.findElements(By.name("Password")).size();
+		List<WebElement> OriginalPass = driver.findElements(By.name("Password"));
+		OriginalPass.get(ok_size-1).sendKeys(OldPassword);
+		Thread.sleep(2000);
+		
+		
+		WebElement NewPass = driver.findElement(By.name("newpassword"));
+		NewPass.sendKeys(NewPassword);
+		Thread.sleep(2000);
+		
+		
+		
+		WebElement ReEnterNewPass = driver.findElement(By.name("newpassword1"));
+		ReEnterNewPass.sendKeys(ReEnterNewPassword);
+		Thread.sleep(2000);
+		
+		WebElement ClickSaveChanges = driver.findElement(By.id("submitPassword"));
+		ClickSaveChanges.click();
+	}
+	
+
+	
+	
+	
 }
