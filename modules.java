@@ -551,7 +551,7 @@ public class modules {
 	}
 	
 	//Fills in old password and new password
-	public static void EditPassword(WebDriver driver, String OldPassword, String NewPassword, String ReEnterNewPassword) throws InterruptedException {
+	public static void EditPassword(WebDriver driver, String OldPassword, String NewPassword, String ReEnterNewPassword, JavascriptExecutor js) throws InterruptedException {
 		int ok_size=driver.findElements(By.name("Password")).size();
 		List<WebElement> OriginalPass = driver.findElements(By.name("Password"));
 		OriginalPass.get(ok_size-1).sendKeys(OldPassword);
@@ -567,7 +567,7 @@ public class modules {
 		WebElement ReEnterNewPass = driver.findElement(By.name("newpassword1"));
 		ReEnterNewPass.sendKeys(ReEnterNewPassword);
 		Thread.sleep(2000);
-		
+		js.executeScript("window.scrollBy(0,300)");
 		WebElement ClickSaveChanges = driver.findElement(By.id("submitPassword"));
 		ClickSaveChanges.click();
 	}

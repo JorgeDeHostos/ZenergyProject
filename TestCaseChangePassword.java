@@ -44,17 +44,18 @@ public class TestCaseChangePassword {
 	
 	//clicks on edit password on account settings
 	modules.ClickEditPassword(driver);
-
+	
 
 	
 	//fills in old password and new password	
-	
 	String OldPassword = "Germany95!@";
 	String NewPassword = "Germany95!@";
 	String ReEnterNewPassword = "Germany95!@";
 	
 	
-	modules.EditPassword(driver, OldPassword, NewPassword, ReEnterNewPassword);
+	modules.EditPassword(driver, OldPassword, NewPassword, ReEnterNewPassword, js);
+	
+	modules.TestCasePassed();
 	
 	
 	Thread.sleep(5000);
