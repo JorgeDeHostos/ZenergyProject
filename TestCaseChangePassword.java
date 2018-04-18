@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -8,7 +12,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestCaseChangePassword {
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		File writer = new File("LogTestCaseChangePassword.txt");
+		PrintWriter printWriter = new PrintWriter(writer);
+		
 	String os = System.getProperty("os.name").toLowerCase();
 	//implements google chrome
 	
@@ -25,25 +33,25 @@ public class TestCaseChangePassword {
 	
 	
 	//opens NewEgg
-	modules.OpenNewEgg(driver);
+	modules.OpenNewEgg(driver, printWriter, timestamp);
 
 	//clicks log in and register on homepage
-	modules.ClickLoginAndRegister(driver);
+	modules.ClickLoginAndRegister(driver, printWriter, timestamp);
 	
-	modules.Login(driver, "npgomes@uncg.edu", "Germany95!@");
+	modules.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
 	Thread.sleep(2000);
 	
 	
 	//clicks on my dashboard on homepage
-	modules.ClickMyDashboard(driver);
+	modules.ClickMyDashboard(driver, printWriter, timestamp);
 	
 	
 	//clicks on account settings
-	modules.ClickAccountSettings(driver);
+	modules.ClickAccountSettings(driver, printWriter, timestamp);
 	
 	
 	//clicks on edit password on account settings
-	modules.ClickEditPassword(driver);
+	modules.ClickEditPassword(driver, printWriter, timestamp);
 	
 
 	
@@ -53,14 +61,17 @@ public class TestCaseChangePassword {
 	String ReEnterNewPassword = "Germany95!@";
 	
 	
-	modules.EditPassword(driver, OldPassword, NewPassword, ReEnterNewPassword, js);
+	modules.EditPassword(driver, OldPassword, NewPassword, ReEnterNewPassword, js, printWriter, timestamp);
 	
-	modules.TestCasePassed();
+	
 	
 	
 	Thread.sleep(5000);
 	
 	driver.quit();
+	
+	modules.TestCasePassed(printWriter, timestamp);
+	printWriter.close();
 	
 }
 

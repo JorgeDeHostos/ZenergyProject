@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -9,7 +13,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestCaseGuestCheckout {
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		File writer = new File("LogTestCaseGuestCheckout.txt");
+		PrintWriter printWriter = new PrintWriter(writer);
+		
+		
+		
 		String os = System.getProperty("os.name").toLowerCase();
 		//implements google chrome
 		
@@ -26,27 +36,27 @@ public class TestCaseGuestCheckout {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		
 		//goes to newegg.com
-		modules.OpenNewEgg(driver);
+		modules.OpenNewEgg(driver, printWriter, timestamp);
 		
 		//product search
-		modules.ProductSearch(driver, "Full Tower");
+		modules.ProductSearch(driver, "Full Tower", printWriter, timestamp);
 		
 		
 		//clicks on the first item on the list and list items on the webpage
-		modules.ClickOnItem(driver,3);
+		modules.ClickOnItem(driver,3, printWriter, timestamp);
 		
 		
 		//find add to cart id and clicks it
-		modules.ClickAddToCart(driver);
+		modules.ClickAddToCart(driver, printWriter, timestamp);
 		
 		//view shopping cart
-		modules.ClickViewItem(driver);
+		modules.ClickViewItem(driver, printWriter, timestamp);
 	
 		// Clicks Secure Checkout 
-		modules.ClickSecureCheckout(driver);
+		modules.ClickSecureCheckout(driver,printWriter, timestamp);
 		
 		// Clicks Guest Checkout
-		modules.ClickGuestCheckout(driver);
+		modules.ClickGuestCheckout(driver, printWriter, timestamp);
 	
 		
 		//fills in shipping address information
@@ -61,18 +71,18 @@ public class TestCaseGuestCheckout {
 		String PhoneNumber = "9109206063";
 		String UnregisteredEmail = "nelgomes1@hotmail.com";
 		
-		modules.GuestAddress(driver, js, wait, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber, UnregisteredEmail);
+		modules.GuestAddress(driver, js, wait, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber, UnregisteredEmail, printWriter, timestamp);
 		
 		//Clicks Continue Billing
-		modules.ClickContinueBilling(driver);
+		modules.ClickContinueBilling(driver, printWriter, timestamp);
 		
 		Thread.sleep(5000);
 		
 		driver.quit();
 		
 		// if all of the modules work it should display message that says the test has passed
-		modules.TestCasePassed();
-		
+		modules.TestCasePassed(printWriter, timestamp);
+		printWriter.close();
 		
 }
 }

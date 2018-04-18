@@ -1,3 +1,5 @@
+import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -13,26 +15,33 @@ public class modules {
 	
 	
 	//opens the website new egg
-	public static void OpenNewEgg(WebDriver driver) {
+	public static void OpenNewEgg(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) {
 		driver.get("https://www.newegg.com");
+		printWriter.println(timestamp + " Opens new egg");
+		System.out.println(timestamp + " Opens new egg");
 		
 	}
 	
 	
 	//clicks on log in and register link on the top
-	public static void ClickLoginAndRegister(WebDriver driver) {
+	public static void ClickLoginAndRegister(WebDriver driver,  PrintWriter printWriter,Timestamp timestamp) {
 		driver.findElement(By.partialLinkText("Log in or Register")).click();
+		printWriter.println(timestamp + " Clicks on log in and register link");
+		System.out.println(timestamp + " Clicks on log in and register link");
 	}
 	
 	
 	//searches for specific product
-	public static void ProductSearch(WebDriver driver, String Product) {
+	public static void ProductSearch(WebDriver driver, String Product, PrintWriter printWriter, Timestamp timestamp) {
 	
 		WebElement Search = driver.findElement(By.id("haQuickSearchBox"));
 		
 		Search.click();
 		Search.sendKeys(Product);
 		Search.submit();
+		
+		printWriter.println(timestamp + " Searches product");
+		System.out.println(timestamp + " Searches product");
 	}
 	
 	
@@ -40,10 +49,12 @@ public class modules {
 	
 	
 	//find add to cart id and clicks it
-	public static void ClickAddToCart(WebDriver driver) throws InterruptedException {
+	public static void ClickAddToCart(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) throws InterruptedException {
 				List<WebElement> ClickAdd = driver.findElements(By.id("landingpage-cart"));
 				ClickAdd.get(0).click();
 				Thread.sleep(2000);
+				printWriter.println(timestamp + " Clicks Add to Cart");
+				System.out.println(timestamp + " Clicks Add to Cart");
 	}
 	
 	
@@ -51,7 +62,7 @@ public class modules {
 	
 	
 	// Clicks Secure Checkout 
-	public static void ClickSecureCheckout(WebDriver driver) throws InterruptedException {
+	public static void ClickSecureCheckout(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) throws InterruptedException {
 	
 		List <WebElement> SecureCheckout = driver.findElements(By.cssSelector("a[href^='javascript']"));
 		WebElement Secure = null;
@@ -67,18 +78,23 @@ public class modules {
 		Secure.click();
 		
 		Thread.sleep(3000);
+		printWriter.println(timestamp + " Clicks Secure Checkout");
+		System.out.println(timestamp + " Clicks Secure Checkout");
 	}
 	
 	//clicks guest checkout
-	public static void ClickGuestCheckout(WebDriver driver) {
+	public static void ClickGuestCheckout(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) {
 		
 		WebElement Click = driver.findElement(By.xpath("//button[contains(.,'Continue as a Guest')]"));
 		Click.click();
+		
+		printWriter.println(timestamp + " Clicks on Guest Checkout");
+		System.out.println(timestamp + " Clicks on Guest Checkout");
 	}
 	
 	
 	//clicks continue billing
-	public static void ClickContinueBilling(WebDriver driver) {
+	public static void ClickContinueBilling(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) {
 		
 		List <WebElement> Billing = driver.findElements(By.cssSelector("a[href^='javascript']"));	
 		WebElement C = null;
@@ -90,6 +106,9 @@ public class modules {
 			}
 		}
 		C.click();
+		
+		printWriter.println(timestamp + " Clicks Continue Billing");
+		System.out.println(timestamp + " Clicks Continue Billing");
 	}
 	
 	
@@ -98,30 +117,36 @@ public class modules {
 	
 	
 	//clicks on the product based on the order of the products displayed
-	public static void ClickOnItem(WebDriver driver, int ItemNumberOnList) throws InterruptedException {
+	public static void ClickOnItem(WebDriver driver, int ItemNumberOnList, PrintWriter printWriter, Timestamp timestamp) throws InterruptedException {
 		//clicks on the the item on the list and list items on the webpage
 		List<WebElement> Products = driver.findElements(By.className("item-title"));
 		Products.get(ItemNumberOnList-1).click();
 		Thread.sleep(2000);
+		printWriter.println(timestamp + " Clicks on item");
+		System.out.println(timestamp + " Clicks on item");
 	}
 	
 	
 	//clicks on the view item link
-	public static void ClickViewItem( WebDriver driver) {
+	public static void ClickViewItem( WebDriver driver, PrintWriter printWriter, Timestamp timestamp) {
 		//view shopping cart
 		driver.findElement(By.partialLinkText("Items")).click();
-			
+		printWriter.println(timestamp + " Clicks view item ");
+		System.out.println(timestamp + " Clicks view item");
 	}
 	
 	
 	//lists products on the page
-	public static void ListItemOnProductSearch(WebDriver driver) {
+	public static void ListItemOnProductSearch(WebDriver driver, PrintWriter printWriter) {
 		List<WebElement> Products = driver.findElements(By.className("item-title"));
 		System.out.println("This is the list of items:");
-		
+		printWriter.println("\nThis is the list of items: "); 
 		for(WebElement ProductList : Products) {
 			String List = ProductList.getText();
 			System.out.println(List);
+			printWriter.println(List);
+			
+			
 		}
 	
 	
@@ -132,7 +157,7 @@ public class modules {
 	
 	
 	//inputs login information 
-	public static void Login(WebDriver driver, String User, String Pass) throws InterruptedException {
+	public static void Login(WebDriver driver, String User, String Pass, PrintWriter printWriter, Timestamp timestamp) throws InterruptedException {
 		//login information
 				WebElement Username = driver.findElement(By.id("UserName"));
 				Username.sendKeys(User);
@@ -142,6 +167,9 @@ public class modules {
 				
 				WebElement Submit = driver.findElement(By.id("submitLogin"));
 				Submit.click();
+				
+				printWriter.println(timestamp + " Logs in successfully");
+				System.out.println(timestamp + " Logs in successfully");
 	}
 	
 	
@@ -152,7 +180,7 @@ public class modules {
 	
 	
 	// inputs information for an actual account
-	public static void ShippingAddress(WebDriver driver, JavascriptExecutor js, String FName, String LName, String AddressLine1, String EnterCity, String DropStateList, String EnterZip, String PhoneNumber) throws InterruptedException{
+	public static void ShippingAddress(WebDriver driver, JavascriptExecutor js, String FName, String LName, String AddressLine1, String EnterCity, String DropStateList, String EnterZip, String PhoneNumber, PrintWriter printWriter, Timestamp timestamp) throws InterruptedException{
 		//clicks radio button
 		WebElement Radio = driver.findElement(By.id("shippingAddressAdd"));
 		Radio.click();
@@ -204,12 +232,15 @@ public class modules {
 		//unselect box
 		WebElement Unselect = driver.findElement(By.id("saveShipping"));
 		Unselect.click();
+		
+		printWriter.println(timestamp + " Fills in shipping information successfully");
+		System.out.println(timestamp + " Fills in shipping information successfully");
 	}
 	
 	
 	
 	//inputs information for guest account
-	public static void GuestAddress(WebDriver driver, JavascriptExecutor js, WebDriverWait wait, String FName, String LName, String AddressLine1, String EnterCity, String DropStateList, String EnterZip, String PhoneNumber, String UnregisteredEmail ) throws InterruptedException {
+	public static void GuestAddress(WebDriver driver, JavascriptExecutor js, WebDriverWait wait, String FName, String LName, String AddressLine1, String EnterCity, String DropStateList, String EnterZip, String PhoneNumber, String UnregisteredEmail, PrintWriter printWriter, Timestamp timestamp ) throws InterruptedException {
 		
 		
 		//inputs first name
@@ -261,6 +292,9 @@ public class modules {
 		List<WebElement> Email = driver.findElements(By.name("GuestEmail"));
 		Email.get(ok_size-1).sendKeys(UnregisteredEmail);
 		
+		printWriter.println(timestamp + " Fills in Shipping Information");
+		System.out.println(timestamp + " Fills in Shipping Information");
+		
 		
 	}
 	
@@ -298,54 +332,66 @@ public class modules {
 	
 	
 	//Test Case Pass Message
-	public static void TestCasePassed() {
-		System.out.println("This test case passed all of its credentials");
+	public static void TestCasePassed(PrintWriter printWriter, Timestamp timestamp) {
+		printWriter.println(timestamp + " This test case passed all of it's credentials");
+		System.out.println(timestamp + " This test case passed all of it's credentials");
 	}
 	
 	//clicks on track order on the webpage
-	public static void ClickTrackOrder(WebDriver driver) {
+	public static void ClickTrackOrder(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) {
 		WebElement TrackOrder = driver.findElement(By.id("trackOrder"));
 		TrackOrder.click();
+		printWriter.println(timestamp + " Clicks on Track Order on Homepage");
+		System.out.println(timestamp + " Clicks on Track Order on Homepage");
 	}
 	
 	
 	//selects order time frame
-	public static void SelectOrderTimeFrame(WebDriver driver, JavascriptExecutor js) {
+	public static void SelectOrderTimeFrame(WebDriver driver, JavascriptExecutor js, PrintWriter printWriter, Timestamp timestamp) {
 		WebElement dropDownListBox = driver.findElement(By.name("selectOrderTimeRegion"));
 		Select dropList = new Select(dropDownListBox);
 		dropList.selectByVisibleText("All");
 		dropDownListBox.submit();
 		js.executeScript("window.scrollBy(0,300)");
 		
+		printWriter.println(timestamp + " Selects order time frame");
+		System.out.println(timestamp + " Selects order time frame");
+		
 	}
 	
 	//inputs order number information for guests or without login
-	public static void OrderNumberInformation(WebDriver driver, String OrderNumber, String ZipCodeOREmail) {
+	public static void OrderNumberInformation(WebDriver driver, String OrderNumber, String ZipCodeOREmail, PrintWriter printWriter, Timestamp timestamp) {
 		int ok_size=driver.findElements(By.name("GuestOrderNumber")).size();
 		List<WebElement> Order = driver.findElements(By.name("GuestOrderNumber"));
 		Order.get(ok_size-1).sendKeys(OrderNumber);
 		
 		WebElement ZipOrEmail = driver.findElement(By.name("GuestEmailZipCode"));
 		ZipOrEmail.sendKeys(ZipCodeOREmail);
+		printWriter.println(timestamp + " Fills in Order information");
+		System.out.println(timestamp + " Fills in Order information");
 	
 	}
 	
 	//clicks find history
-	public static void ClickFindHistory(WebDriver driver) {
+	public static void ClickFindHistory(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) {
 		WebElement Click = driver.findElement(By.xpath("//button[contains(.,'Find My Order ')]"));
 		Click.click();
+		printWriter.println(timestamp + " Clicks Find History");
+		System.out.println(timestamp + " Clicks Find History");
 	}
 	
 	
 	
 	//clicks on 72 deals link on the homepage
-	public static void ClickOnSeventyTwoDeals(WebDriver driver, JavascriptExecutor js ) throws InterruptedException {
-		List <WebElement> SeventyTwoDeals = driver.findElements(By.cssSelector("a[href^='//www.newegg.com/DailyDeal.aspx?name=DailyDeal&cm_sp=Dailydeal-_-adlink-_-04162018']"));
+	public static void ClickOnSeventyTwoDeals(WebDriver driver, JavascriptExecutor js, PrintWriter printWriter, Timestamp timestamp ) throws InterruptedException {
+		List <WebElement> SeventyTwoDeals = driver.findElements(By.cssSelector("a[href^='//www.newegg.com/DailyDeal.aspx?name=DailyDeal&cm_sp=Dailydeal-_-adlink-_-04182018"));
 		SeventyTwoDeals.get(0).click();
 		Thread.sleep(3000);
+		printWriter.println(timestamp + " Clicks on Seventy two deals on homepage");
+		System.out.println(timestamp + " Clicks on Seventy two deals on homepage");
 		
 	}
-	public static void dropDownDeals(WebDriver driver, JavascriptExecutor js ) throws InterruptedException {
+	public static void dropDownDeals(WebDriver driver, JavascriptExecutor js, PrintWriter printWriter, Timestamp timestamp ) throws InterruptedException {
 		WebElement dropDownInStock = driver.findElement(By.id("Order_top"));
 		Select inStock = new Select(dropDownInStock);
 		inStock.selectByVisibleText("In Stock");
@@ -377,12 +423,14 @@ public class modules {
 		MostReview.selectByVisibleText("Most Reviews");
 		js.executeScript("window.scrollBy(0,300)");
 		Thread.sleep(5000);
-
+		
+		printWriter.println(timestamp + " Checks in stock, lowest price, highest price, best rating, and most reviews");
+		System.out.println(timestamp + " Checks in stock, lowest price, highest price, best rating, and most reviews");
 	
 	}
 	
 	
-	public static void InputRegistrationInfo(WebDriver driver, String FName, String LName, String InputEmail, String Pass) throws InterruptedException {
+	public static void InputRegistrationInfo(WebDriver driver, String FName, String LName, String InputEmail, String Pass, PrintWriter printWriter,Timestamp timestamp) throws InterruptedException {
 		
 		WebElement FirstName = driver.findElement(By.name("FirstName"));
 		FirstName.sendKeys(FName);
@@ -402,9 +450,14 @@ public class modules {
 		
 		WebElement Click = driver.findElement(By.id("submitRegistration"));
 		Click.click();
+		
+		printWriter.println(timestamp + " Registration info has been filled properly");
+		System.out.println(timestamp + " Registration info has been filled properly");
+		
+		
 	}
 	
-	public static void InputNewAddressInformation(WebDriver driver) throws InterruptedException {
+	public static void InputNewAddressInformation(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) throws InterruptedException {
 		WebElement ClickAddNewAddress = driver.findElement(By.id("addAddrLink"));
 		ClickAddNewAddress.click();
 		
@@ -463,10 +516,14 @@ public class modules {
 				}
 			}
 			c.click();
+			
+			printWriter.println(timestamp + " Inputs new registration info successfully");
+			System.out.println(timestamp + " Inputs new registration info successfully");
+			
 	}
 	
 	//finds specific address
-	public static void findAddress(WebDriver driver, String Name) {
+	public static void findAddress(WebDriver driver, String Name, PrintWriter printWriter, Timestamp timestamp) {
 		WebElement FindAddress = driver.findElement(By.name("keyword"));
 		FindAddress.sendKeys(Name);
 		
@@ -483,9 +540,12 @@ public class modules {
 			
 		}
 		C.click();
+		
+		printWriter.println(timestamp +" find's the address successfully");
+		System.out.println(timestamp +" find's the address successfully");
 	}
 	
-	public static void ViewEditAddress(WebDriver driver) {
+	public static void ViewEditAddress(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) {
 		List <WebElement> ViewEdit = driver.findElements(By.cssSelector("a[href^='javascript']"));
 		WebElement C = null;
 		for(WebElement View : ViewEdit) {
@@ -496,10 +556,13 @@ public class modules {
 			}
 		}
 		C.click();
+		
+		printWriter.println(timestamp + " Views and Edits address successfully ");
+		System.out.println(timestamp + " Views and Edits address successfully");
 	}
 	
 	//deletes the searched up address
-	public static void ClickDeleteAddress(WebDriver driver) throws InterruptedException {
+	public static void ClickDeleteAddress(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) throws InterruptedException {
 		List <WebElement> Delete = driver.findElements(By.cssSelector("a[href^='javascript'"));
 		WebElement D = null;
 		for (WebElement Del: Delete) {
@@ -512,6 +575,8 @@ public class modules {
 		D.click();
 		Thread.sleep(3000);
 		
+	
+		
 		List <WebElement> Yes = driver.findElements(By.cssSelector("a[href^='javascript'"));
 		WebElement Y = null;
 		for (WebElement yes : Yes) {
@@ -522,6 +587,8 @@ public class modules {
 			}
 		}
 		Y.click();
+		printWriter.println(timestamp + " Deletes address successfully");
+		System.out.println(timestamp + " Deletes address successfully");
 			
 			
 	}
@@ -529,29 +596,37 @@ public class modules {
 	
 	//clicks My Dashboard on the homepage
 	
-	public static void ClickMyDashboard(WebDriver driver) {
+	public static void ClickMyDashboard(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) {
 		WebElement Dashboard = driver.findElement(By.partialLinkText("My Dashboard"));
 		Dashboard.click();
+		
+		printWriter.println(timestamp + " Clicks on dashboard on the homepage");
+		System.out.println(timestamp + " Clicks on dashboard on the homepage");
 	}
 	
 	//clicks account settings 
-	public static void ClickAccountSettings(WebDriver driver) {
+	public static void ClickAccountSettings(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) {
 		WebElement Settings = driver.findElement(By.partialLinkText("Account Settings"));
 		Settings.click();
+		
+		printWriter.println(timestamp + " Clicks on account settings");
+		System.out.println(timestamp + " Clicks on account settings");
 		
 	}
 	
 	
 	
 	//clicks on edit password
-	public static void ClickEditPassword(WebDriver driver) throws InterruptedException {
+	public static void ClickEditPassword(WebDriver driver,PrintWriter printWriter, Timestamp timestamp) throws InterruptedException {
 		List <WebElement> ClickEditPassword = driver.findElements(By.xpath("//button[contains(.,'Edit')]"));
 		ClickEditPassword.get(2).click();
 		Thread.sleep(3000);
+		System.out.println(timestamp + " Clicks on edit password");
+		printWriter.println(timestamp + " Clicks on edit password");
 	}
 	
 	//Fills in old password and new password
-	public static void EditPassword(WebDriver driver, String OldPassword, String NewPassword, String ReEnterNewPassword, JavascriptExecutor js) throws InterruptedException {
+	public static void EditPassword(WebDriver driver, String OldPassword, String NewPassword, String ReEnterNewPassword, JavascriptExecutor js, PrintWriter printWriter, Timestamp timestamp) throws InterruptedException {
 		int ok_size=driver.findElements(By.name("Password")).size();
 		List<WebElement> OriginalPass = driver.findElements(By.name("Password"));
 		OriginalPass.get(ok_size-1).sendKeys(OldPassword);
@@ -570,8 +645,26 @@ public class modules {
 		js.executeScript("window.scrollBy(0,300)");
 		WebElement ClickSaveChanges = driver.findElement(By.id("submitPassword"));
 		ClickSaveChanges.click();
+		printWriter.println(timestamp + " Edit's the password");
+		System.out.println(timestamp + " Edit's the password");
 	}
 	
+	//clicks on sign up for registration
+	public static void ClickSignUpLink(WebDriver driver) {
+		WebElement SignUp = driver.findElement(By.partialLinkText("Sign up"));
+		SignUp.click();
+		
+	}
+	
+	//clicks on address book
+	public static void ClickAddressBook(WebDriver driver, PrintWriter printWriter, Timestamp timestamp) {
+		WebElement ClickAddressBook = driver.findElement(By.partialLinkText("Address Book"));
+		ClickAddressBook.click();
+		printWriter.println(timestamp + " Clicks on address book");
+		System.out.println(timestamp + " Clicks on address book");
+		
+		
+	}
 
 	
 	

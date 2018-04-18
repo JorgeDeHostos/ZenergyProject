@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -8,7 +12,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class TestCaseAddressBook {
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		File writer = new File("LogTestCaseAddress.txt");
+		PrintWriter printWriter = new PrintWriter(writer);
+		
+		
+		
 		String os = System.getProperty("os.name").toLowerCase();
 		//implements google chrome
 		
@@ -24,40 +34,39 @@ public class TestCaseAddressBook {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
 		//opens newegg.com
-		modules.OpenNewEgg(driver);
+		modules.OpenNewEgg(driver, printWriter, timestamp);
 		
 		//clicks address book
-		WebElement ClickAddressBook = driver.findElement(By.partialLinkText("Address Book"));
-		ClickAddressBook.click();
+		modules.ClickAddressBook(driver, printWriter, timestamp);
+		
 		
 		//login information
-		modules.Login(driver, "npgomes@uncg.edu", "Germany95!@");
+		modules.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
 		
 		//clicks add new address and inputs information
-		modules.InputNewAddressInformation(driver);
+		modules.InputNewAddressInformation(driver, printWriter, timestamp);
 		
 		//searches address book for other addresses
-		modules.findAddress(driver, "Old Address");
+		modules.findAddress(driver, "Old Address", printWriter, timestamp);
 		
 		
 		driver.findElement(By.name("keyword")).clear();
 		
 		
-		modules.findAddress(driver, "Main Address");
+		modules.findAddress(driver, "Main Address", printWriter, timestamp);
 		
 		//clicks view edit to see address
-		modules.ViewEditAddress(driver);
+		modules.ViewEditAddress(driver, printWriter, timestamp);
 		
 	
 		//clicks delete and yes
-		modules.ClickDeleteAddress(driver);
+		modules.ClickDeleteAddress(driver, printWriter, timestamp);
 		
 		Thread.sleep(5000);
 		driver.quit();
 		
-		modules.TestCasePassed();
-
-		
+		modules.TestCasePassed(printWriter, timestamp);
+		printWriter.close();
 		
 	
 	}

@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -6,7 +10,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestCaseOrderHistoryGuest {
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		File writer = new File("LogTestCaseOrderHistoryGuest.txt");
+		PrintWriter printWriter = new PrintWriter(writer);
+		
+		
+		
 		String os = System.getProperty("os.name").toLowerCase();
 		//implements google chrome
 		
@@ -21,27 +31,30 @@ public class TestCaseOrderHistoryGuest {
 		WebDriver driver = new ChromeDriver();
 		
 		//open NewEgg
-		modules.OpenNewEgg(driver);
+		modules.OpenNewEgg(driver, printWriter, timestamp);
 		
 		
 		//click track order	
-		modules.ClickTrackOrder(driver);
+		modules.ClickTrackOrder(driver, printWriter, timestamp);
+		
+		
 		
 		//order number information
-		modules.OrderNumberInformation(driver,"413892633", "27502");
+		modules.OrderNumberInformation(driver,"413892633", "27502", printWriter, timestamp);
 		
 		
 		
 		//clicks finds history
-		modules.ClickFindHistory(driver);
+		modules.ClickFindHistory(driver, printWriter, timestamp);
 		
 		
 		
 		Thread.sleep(4000);
 		driver.quit();
 		
-		modules.TestCasePassed();
-		
+		//Test case passed
+		modules.TestCasePassed(printWriter, timestamp);
+		printWriter.close();
 }
 
 }

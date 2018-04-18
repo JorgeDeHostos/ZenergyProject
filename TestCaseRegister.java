@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -12,7 +16,11 @@ import org.openqa.selenium.support.ui.Select;
 
 
 public class TestCaseRegister {
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		File writer = new File("LogTestCaseRegister.txt");
+		PrintWriter printWriter = new PrintWriter(writer);
+		
 		String os = System.getProperty("os.name").toLowerCase();
 		//implements google chrome
 		
@@ -27,15 +35,13 @@ public class TestCaseRegister {
 		WebDriver driver = new ChromeDriver();
 		
 		//opens NewEgg
-		modules.OpenNewEgg(driver);
+		modules.OpenNewEgg(driver, printWriter, timestamp);
 		
 		//Clicks on Log in and Register link
-		modules.ClickLoginAndRegister(driver);
+		modules.ClickLoginAndRegister(driver, printWriter, timestamp);
 		
 		//Clicks on sign up link
-		WebElement SignUp = driver.findElement(By.partialLinkText("Sign up"));
-		SignUp.click();
-		
+		modules.ClickSignUpLink(driver);
 		
 		//inputs information for registering and clicks signup
 		String FName = "Nelson";
@@ -43,7 +49,7 @@ public class TestCaseRegister {
 		String InputEmail = "npgomes@uncg.edu";
 		String Pass = "Germany95!@";
 		
-		modules.InputRegistrationInfo(driver, FName, LName, InputEmail, Pass);
+		modules.InputRegistrationInfo(driver, FName, LName, InputEmail, Pass, printWriter, timestamp);
 		
 		
 		
@@ -53,8 +59,8 @@ public class TestCaseRegister {
 		driver.quit();
 		
 		// if all of the modules work it should display message that says the test has passed
-		modules.TestCasePassed();
-		
+		modules.TestCasePassed(printWriter, timestamp);
+		printWriter.close();
 		
 		
 }

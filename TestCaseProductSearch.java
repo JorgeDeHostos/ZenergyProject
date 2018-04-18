@@ -1,9 +1,19 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestCaseProductSearch {
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		File writer = new File("LogTestCaseProductSearch.txt");
+		PrintWriter printWriter = new PrintWriter(writer);
+		
+		
 		String os = System.getProperty("os.name").toLowerCase();
 		//implements google chrome
 		
@@ -20,10 +30,10 @@ public class TestCaseProductSearch {
 		
 		
 		//opens newegg
-		modules.OpenNewEgg(driver);
+		modules.OpenNewEgg(driver, printWriter, timestamp);
 		
 		//searches string that you want to search
-		modules.ProductSearch(driver, "Tower");
+		modules.ProductSearch(driver, "Tower", printWriter, timestamp);
 		
 		//checks valid title of the page and product matches
 		modules.CheckTitleOnPage(driver, "Tower - Newegg.com");
@@ -35,19 +45,19 @@ public class TestCaseProductSearch {
 		
 		
 		//list the items on the webpage
-		modules.ListItemOnProductSearch(driver);
+		modules.ListItemOnProductSearch(driver,printWriter);
 		
 		//clicks on item list that you want to click on I decide to pick the 3rd item on the list
-		modules.ClickOnItem(driver, 3);
+		modules.ClickOnItem(driver, 3, printWriter, timestamp);
 		
 		Thread.sleep(5000);
 		
 		driver.quit();
 		
 		// if all of the modules work it should display message that says the test has passed
-		modules.TestCasePassed();
+		modules.TestCasePassed(printWriter, timestamp);
 		
-		
+		printWriter.close();
 		
 }
 }

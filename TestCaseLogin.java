@@ -1,4 +1,9 @@
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +13,15 @@ public class TestCaseLogin {
 	
 
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+		
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		File writer = new File("LogTestCaseLogin.txt");
+		PrintWriter printWriter = new PrintWriter(writer);
+		
+		
+		
+		
 		
 		String os = System.getProperty("os.name").toLowerCase();
 		//implements google chrome
@@ -27,13 +40,14 @@ public class TestCaseLogin {
 
 		
 		//opens newegg
-		modules.OpenNewEgg(driver);
+		modules.OpenNewEgg(driver, printWriter, timestamp);
+	
 		
 		
 		//clicks on login link
-		modules.ClickLoginAndRegister(driver);
+		modules.ClickLoginAndRegister(driver, printWriter, timestamp);
 		
-		modules.Login(driver, "npgomes@uncg.edu", "Germany95!@");
+		modules.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
 		
 		
 		
@@ -41,8 +55,8 @@ public class TestCaseLogin {
 		driver.quit();
 		
 		// if all of the modules work it should display message that says the test has passed
-		modules.TestCasePassed();
-		
+		modules.TestCasePassed(printWriter, timestamp);
+		printWriter.close();
 			
 		}
 	
