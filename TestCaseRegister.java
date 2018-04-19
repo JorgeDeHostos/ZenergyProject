@@ -35,13 +35,13 @@ public class TestCaseRegister {
 		WebDriver driver = new ChromeDriver();
 		
 		//opens NewEgg
-		modules.OpenNewEgg(driver, printWriter, timestamp);
+		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		
 		//Clicks on Log in and Register link
-		modules.ClickLoginAndRegister(driver, printWriter, timestamp);
+		HomePage.ClickLoginAndRegister(driver, printWriter, timestamp);
 		
 		//Clicks on sign up link
-		modules.ClickSignUpLink(driver);
+		LoginPage.ClickSignUpLink(driver);
 		
 		//inputs information for registering and clicks signup
 		String FName = "Nelson";
@@ -49,7 +49,7 @@ public class TestCaseRegister {
 		String InputEmail = "npgomes@uncg.edu";
 		String Pass = "Germany95!@";
 		
-		modules.InputRegistrationInfo(driver, FName, LName, InputEmail, Pass, printWriter, timestamp);
+		RegistrationPage.InputRegistrationInfo(driver, FName, LName, InputEmail, Pass, printWriter, timestamp);
 		
 		
 		

@@ -36,27 +36,27 @@ public class TestCaseGuestCheckout {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		
 		//goes to newegg.com
-		modules.OpenNewEgg(driver, printWriter, timestamp);
+		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		
 		//product search
-		modules.ProductSearch(driver, "Full Tower", printWriter, timestamp);
+		HomePage.ProductSearch(driver, "Full Tower", printWriter, timestamp);
 		
 		
 		//clicks on the first item on the list and list items on the webpage
-		modules.ClickOnItem(driver,3, printWriter, timestamp);
+		ProductSearchPage.ClickOnItem(driver,3, printWriter, timestamp);
 		
 		
 		//find add to cart id and clicks it
-		modules.ClickAddToCart(driver, printWriter, timestamp);
+		ProductPage.ClickAddToCart(driver, printWriter, timestamp);
 		
 		//view shopping cart
-		modules.ClickViewItem(driver, printWriter, timestamp);
+		PostProductPage.ClickViewItem(driver, printWriter, timestamp);
 	
 		// Clicks Secure Checkout 
-		modules.ClickSecureCheckout(driver,printWriter, timestamp);
+		ShoppingCartPage.ClickSecureCheckout(driver,printWriter, timestamp);
 		
 		// Clicks Guest Checkout
-		modules.ClickGuestCheckout(driver, printWriter, timestamp);
+		GuestCustomersPage.ClickGuestCheckout(driver, printWriter, timestamp);
 	
 		
 		//fills in shipping address information
@@ -71,10 +71,10 @@ public class TestCaseGuestCheckout {
 		String PhoneNumber = "9109206063";
 		String UnregisteredEmail = "nelgomes1@hotmail.com";
 		
-		modules.GuestAddress(driver, js, wait, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber, UnregisteredEmail, printWriter, timestamp);
+		ShippingInfoPage.GuestAddress(driver, js, wait, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber, UnregisteredEmail, printWriter, timestamp);
 		
 		//Clicks Continue Billing
-		modules.ClickContinueBilling(driver, printWriter, timestamp);
+		ShippingInfoPage.ClickContinueBilling(driver, printWriter, timestamp);
 		
 		Thread.sleep(5000);
 		

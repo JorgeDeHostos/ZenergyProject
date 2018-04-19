@@ -33,18 +33,18 @@ public class TestCaseOrderHistory {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
 		//open NewEgg
-		modules.OpenNewEgg(driver, printWriter, timestamp);
+		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		
 		//click track order	
-		modules.ClickTrackOrder(driver, printWriter, timestamp);
+		HomePage.ClickTrackOrder(driver, printWriter, timestamp);
 		
 		
 		//login information
-		modules.Login(driver, "jmdehost@uncg.edu", "Jdh005546!", printWriter, timestamp);
+		LoginPage.Login(driver, "jmdehost@uncg.edu", "Jdh005546!", printWriter, timestamp);
 		
 		
 		//selects drop down box and clicks all
-		modules.SelectOrderTimeFrame(driver, js, printWriter, timestamp);
+		AccountSettingsPage.SelectOrderTimeFrame(driver, js, printWriter, timestamp);
 		
 		Thread.sleep(4000);
 		driver.quit();

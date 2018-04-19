@@ -34,27 +34,27 @@ public class TestCaseCheckout {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
 		//goes to newegg.com
-		modules.OpenNewEgg(driver, printWriter, timestamp);
+		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		
 		//product search
-		modules.ProductSearch(driver,"Full Tower", printWriter, timestamp);
+		HomePage.ProductSearch(driver,"Full Tower", printWriter, timestamp);
 		
 		
 		//clicks on the first item on the list and list items on the webpage
-		modules.ClickOnItem(driver, 3, printWriter, timestamp);
+		ProductSearchPage.ClickOnItem(driver, 3, printWriter, timestamp);
 		
 		
 		//find add to cart id and clicks it
-		modules.ClickAddToCart(driver, printWriter, timestamp);
+		ProductPage.ClickAddToCart(driver, printWriter, timestamp);
 		
 		//view shopping cart
-		modules.ClickViewItem(driver, printWriter, timestamp);
+		PostProductPage.ClickViewItem(driver, printWriter, timestamp);
 	
 		// Clicks Secure Checkout 
-		modules.ClickSecureCheckout(driver, printWriter, timestamp);
+		ShoppingCartPage.ClickSecureCheckout(driver, printWriter, timestamp);
 		
 		// login modules
-		modules.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
+		LoginPage.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
 		
 		//enters shipping credentials
 		String FName = "Nelson";
@@ -65,12 +65,14 @@ public class TestCaseCheckout {
 		String DropStateList = "NORTH CAROLINA";
 		String EnterZip = "27403";
 		String PhoneNumber= "9109206063";
-		modules.ShippingAddress(driver, js, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber, printWriter, timestamp);
+		
+		
+		ShippingInfoPage.ShippingAddress(driver, js, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber, printWriter, timestamp);
 	
 		
 		
 		//clicks continue billing
-		modules.ClickContinueBilling(driver, printWriter, timestamp);
+		ShippingInfoPage.ClickContinueBilling(driver, printWriter, timestamp);
 		
 		Thread.sleep(4000);
 		

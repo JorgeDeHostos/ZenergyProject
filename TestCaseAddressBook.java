@@ -33,34 +33,34 @@ public class TestCaseAddressBook {
 		WebDriver driver = new ChromeDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
+		
 		//opens newegg.com
-		modules.OpenNewEgg(driver, printWriter, timestamp);
+		HomePage.OpenNewEgg(driver, printWriter, timestamp);
+		js.executeScript("window.scrollBy(0,5000)");
 		
 		//clicks address book
-		modules.ClickAddressBook(driver, printWriter, timestamp);
+		HomePage.ClickAddressBook(driver, printWriter, timestamp);
 		
 		
 		//login information
-		modules.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
+		LoginPage.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
 		
 		//clicks add new address and inputs information
-		modules.InputNewAddressInformation(driver, printWriter, timestamp);
+		AccountSettingsPage.InputNewAddressInformation(driver, printWriter, timestamp);
 		
 		//searches address book for other addresses
-		modules.findAddress(driver, "Old Address", printWriter, timestamp);
-		
-		
+		AccountSettingsPage.findAddress(driver, "Old Address", printWriter, timestamp);
 		driver.findElement(By.name("keyword")).clear();
 		
 		
-		modules.findAddress(driver, "Main Address", printWriter, timestamp);
+		AccountSettingsPage.findAddress(driver, "Main Address", printWriter, timestamp);
 		
 		//clicks view edit to see address
-		modules.ViewEditAddress(driver, printWriter, timestamp);
+		AccountSettingsPage.ClickViewEditAddress(driver, printWriter, timestamp);
 		
 	
 		//clicks delete and yes
-		modules.ClickDeleteAddress(driver, printWriter, timestamp);
+		AccountSettingsPage.ClickDeleteAddress(driver, printWriter, timestamp);
 		
 		Thread.sleep(5000);
 		driver.quit();

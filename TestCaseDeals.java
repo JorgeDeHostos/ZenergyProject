@@ -34,18 +34,19 @@ public class TestCaseDeals {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
 		//goes to newegg.com
-		modules.OpenNewEgg(driver, printWriter, timestamp);
+		HomePage.OpenNewEgg(driver, printWriter, timestamp);
+		js.executeScript("window.scrollBy(0,1000)");
 		
 		
 		//clicks on 72 deals link
-		modules.ClickOnSeventyTwoDeals(driver, js, printWriter, timestamp);
+		HomePage.ClickOnSeventyTwoDeals(driver, js, printWriter, timestamp);
 		
 		//checks the title of the page
 		modules.CheckTitleOnPage(driver, "Daily Deals - Newegg.com");
 		
 		
 		//selects each dropdown for in stock, lowest price, highest price, best rating, most reviews
-		modules.dropDownDeals(driver, js, printWriter, timestamp);
+		SeventyTwoDealsPage.dropDownDeals(driver, js, printWriter, timestamp);
 		
 		driver.quit();
 		

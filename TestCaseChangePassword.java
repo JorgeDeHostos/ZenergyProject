@@ -33,25 +33,25 @@ public class TestCaseChangePassword {
 	
 	
 	//opens NewEgg
-	modules.OpenNewEgg(driver, printWriter, timestamp);
+	HomePage.OpenNewEgg(driver, printWriter, timestamp);
 
 	//clicks log in and register on homepage
-	modules.ClickLoginAndRegister(driver, printWriter, timestamp);
+	HomePage.ClickLoginAndRegister(driver, printWriter, timestamp);
 	
-	modules.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
+	LoginPage.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
 	Thread.sleep(2000);
-	
+	js.executeScript("window.scrollBy(0,5000)");
 	
 	//clicks on my dashboard on homepage
-	modules.ClickMyDashboard(driver, printWriter, timestamp);
+	HomePage.ClickMyDashboard(driver, printWriter, timestamp);
 	
 	
 	//clicks on account settings
-	modules.ClickAccountSettings(driver, printWriter, timestamp);
+	AccountSettingsPage.ClickAccountSettings(driver, printWriter, timestamp);
 	
 	
 	//clicks on edit password on account settings
-	modules.ClickEditPassword(driver, printWriter, timestamp);
+	AccountSettingsPage.ClickEditPassword(driver, printWriter, timestamp);
 	
 
 	
@@ -61,7 +61,7 @@ public class TestCaseChangePassword {
 	String ReEnterNewPassword = "Germany95!@";
 	
 	
-	modules.EditPassword(driver, OldPassword, NewPassword, ReEnterNewPassword, js, printWriter, timestamp);
+	AccountSettingsPage.EditPassword(driver, OldPassword, NewPassword, ReEnterNewPassword, js, printWriter, timestamp);
 	
 	
 	

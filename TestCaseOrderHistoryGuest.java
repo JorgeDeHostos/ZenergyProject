@@ -31,21 +31,21 @@ public class TestCaseOrderHistoryGuest {
 		WebDriver driver = new ChromeDriver();
 		
 		//open NewEgg
-		modules.OpenNewEgg(driver, printWriter, timestamp);
+		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		
 		
 		//click track order	
-		modules.ClickTrackOrder(driver, printWriter, timestamp);
+		HomePage.ClickTrackOrder(driver, printWriter, timestamp);
 		
 		
 		
 		//order number information
-		modules.OrderNumberInformation(driver,"413892633", "27502", printWriter, timestamp);
+		GuestCustomersPage.OrderNumberInformation(driver,"413892633", "27502", printWriter, timestamp);
 		
 		
 		
 		//clicks finds history
-		modules.ClickFindHistory(driver, printWriter, timestamp);
+		GuestCustomerOrderViewPage.ClickFindHistory(driver, printWriter, timestamp);
 		
 		
 		

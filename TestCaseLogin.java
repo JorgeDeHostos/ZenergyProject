@@ -40,14 +40,14 @@ public class TestCaseLogin {
 
 		
 		//opens newegg
-		modules.OpenNewEgg(driver, printWriter, timestamp);
+		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 	
 		
 		
 		//clicks on login link
-		modules.ClickLoginAndRegister(driver, printWriter, timestamp);
+		HomePage.ClickLoginAndRegister(driver, printWriter, timestamp);
 		
-		modules.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
+		LoginPage.Login(driver, "npgomes@uncg.edu", "Germany95!@", printWriter, timestamp);
 		
 		
 		

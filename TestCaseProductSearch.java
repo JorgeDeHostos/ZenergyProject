@@ -30,10 +30,10 @@ public class TestCaseProductSearch {
 		
 		
 		//opens newegg
-		modules.OpenNewEgg(driver, printWriter, timestamp);
+		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		
 		//searches string that you want to search
-		modules.ProductSearch(driver, "Tower", printWriter, timestamp);
+		HomePage.ProductSearch(driver, "Tower", printWriter, timestamp);
 		
 		//checks valid title of the page and product matches
 		modules.CheckTitleOnPage(driver, "Tower - Newegg.com");
@@ -45,10 +45,10 @@ public class TestCaseProductSearch {
 		
 		
 		//list the items on the webpage
-		modules.ListItemOnProductSearch(driver,printWriter);
+		ProductSearchPage.ListItemOnProductSearch(driver,printWriter);
 		
 		//clicks on item list that you want to click on I decide to pick the 3rd item on the list
-		modules.ClickOnItem(driver, 3, printWriter, timestamp);
+		ProductSearchPage.ClickOnItem(driver, 3, printWriter, timestamp);
 		
 		Thread.sleep(5000);
 		
