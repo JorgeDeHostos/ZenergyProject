@@ -86,7 +86,7 @@ public class ShippingInfoPage {
 		System.out.println(timestamp + " Clicks Continue Billing");
 	}
 	//inputs information for guest account
-		public static void GuestAddress(WebDriver driver, JavascriptExecutor js, WebDriverWait wait, String FName, String LName, String AddressLine1, String EnterCity, String DropStateList, String EnterZip, String PhoneNumber, String UnregisteredEmail, PrintWriter printWriter, Timestamp timestamp ) throws InterruptedException {
+		public static void GuestAddress(WebDriver driver, JavascriptExecutor js,  String FName, String LName, String AddressLine1, String EnterCity, String DropStateList, String EnterZip, String PhoneNumber, String UnregisteredEmail, PrintWriter printWriter, Timestamp timestamp ) throws InterruptedException {
 			
 			
 			//inputs first name
@@ -133,7 +133,7 @@ public class ShippingInfoPage {
 			
 			
 			//inputs email
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.name("GuestEmail")));
+		
 			int ok_size=driver.findElements(By.name("GuestEmail")).size();
 			List<WebElement> Email = driver.findElements(By.name("GuestEmail"));
 			Email.get(ok_size-1).sendKeys(UnregisteredEmail);

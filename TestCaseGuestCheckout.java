@@ -33,7 +33,7 @@ public class TestCaseGuestCheckout {
 		
 		WebDriver driver = new ChromeDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		WebDriverWait wait = new WebDriverWait(driver,30);
+		
 		
 		//goes to newegg.com
 		HomePage.OpenNewEgg(driver, printWriter, timestamp);
@@ -71,7 +71,7 @@ public class TestCaseGuestCheckout {
 		String PhoneNumber = "9109206063";
 		String UnregisteredEmail = "nelgomes1@hotmail.com";
 		
-		ShippingInfoPage.GuestAddress(driver, js, wait, FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber, UnregisteredEmail, printWriter, timestamp);
+		ShippingInfoPage.GuestAddress(driver, js,  FName, LName, AddressLine1, EnterCity, DropStateList, EnterZip, PhoneNumber, UnregisteredEmail, printWriter, timestamp);
 		
 		//Clicks Continue Billing
 		ShippingInfoPage.ClickContinueBilling(driver, printWriter, timestamp);
