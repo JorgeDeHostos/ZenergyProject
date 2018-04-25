@@ -31,7 +31,7 @@ public class TestCaseChangePassword {
 	WebDriver driver = new ChromeDriver();
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	
-	
+	try {
 	//opens NewEgg
 	HomePage.OpenNewEgg(driver, printWriter, timestamp);
 
@@ -72,7 +72,12 @@ public class TestCaseChangePassword {
 	
 	modules.TestCasePassed(printWriter, timestamp);
 	printWriter.close();
-	
+	}catch(Exception e) {
+		printWriter.println(timestamp + " The test has failed check your website for element changes");
+		System.out.println(timestamp +" The test has failed check your website for element changes");
+		printWriter.close();
+		driver.quit();
+	}
 }
 
 

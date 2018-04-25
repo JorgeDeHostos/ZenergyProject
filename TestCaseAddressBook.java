@@ -33,7 +33,7 @@ public class TestCaseAddressBook {
 		WebDriver driver = new ChromeDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
-		
+		try {
 		//opens newegg.com
 		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		js.executeScript("window.scrollBy(0,5000)");
@@ -67,6 +67,14 @@ public class TestCaseAddressBook {
 		
 		modules.TestCasePassed(printWriter, timestamp);
 		printWriter.close();
+		
+		
+		}catch (Exception e) {
+			printWriter.println(timestamp + " The test has failed check the website for element changes");
+			System.out.println(timestamp +" The test has failed check the website for element changes");
+			printWriter.close();
+			driver.quit();
+		}
 		
 	
 	}

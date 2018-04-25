@@ -32,7 +32,7 @@ public class TestCaseDeals {
 		
 		WebDriver driver = new ChromeDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		
+		try {
 		//goes to newegg.com
 		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		js.executeScript("window.scrollBy(0,1000)");
@@ -52,5 +52,13 @@ public class TestCaseDeals {
 		
 		modules.TestCasePassed(printWriter, timestamp);
 		printWriter.close();
+		
+		
+		}catch(Exception e){
+			printWriter.println(timestamp + " The test has failed check your website for element changes");
+			System.out.println(timestamp +" The test has failed check your website for element changes");
+			printWriter.close();
+			driver.quit();
+		}
 }
 }

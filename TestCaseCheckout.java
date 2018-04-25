@@ -33,6 +33,8 @@ public class TestCaseCheckout {
 		WebDriver driver = new ChromeDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
+		
+		try {
 		//goes to newegg.com
 		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		
@@ -41,7 +43,7 @@ public class TestCaseCheckout {
 		
 		
 		//clicks on the first item on the list and list items on the webpage
-		ProductSearchPage.ClickOnItem(driver, 3, printWriter, timestamp);
+		ProductSearchPage.ClickOnItem(driver, 1, printWriter, timestamp);
 		
 		
 		//find add to cart id and clicks it
@@ -82,7 +84,12 @@ public class TestCaseCheckout {
 		// if all of the modules work it should display message that says the test has passed
 		modules.TestCasePassed(printWriter, timestamp);
 		printWriter.close();
-		
+		}catch(Exception e) {
+			printWriter.println(timestamp + " The test has failed check your website for element changes");
+			System.out.println(timestamp +" The test has failed check your website for element changes");
+			printWriter.close();
+			driver.quit();
+		}
 	
 		
 		

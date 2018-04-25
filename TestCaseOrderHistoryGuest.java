@@ -30,6 +30,9 @@ public class TestCaseOrderHistoryGuest {
 		
 		WebDriver driver = new ChromeDriver();
 		
+		
+		
+		try {
 		//open NewEgg
 		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		
@@ -55,6 +58,13 @@ public class TestCaseOrderHistoryGuest {
 		//Test case passed
 		modules.TestCasePassed(printWriter, timestamp);
 		printWriter.close();
+		
+		}catch(Exception e) {
+			printWriter.println(timestamp + " The test has failed check your website for element changes");
+			System.out.println(timestamp +" The test has failed check your website for element changes");
+			printWriter.close();
+			driver.quit();
+		}
 }
 
 }

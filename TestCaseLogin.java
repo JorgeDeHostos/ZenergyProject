@@ -38,7 +38,7 @@ public class TestCaseLogin {
 		
 		WebDriver driver = new ChromeDriver();
 
-		
+		try {
 		//opens newegg
 		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 	
@@ -57,6 +57,13 @@ public class TestCaseLogin {
 		// if all of the modules work it should display message that says the test has passed
 		modules.TestCasePassed(printWriter, timestamp);
 		printWriter.close();
+		
+		}catch(Exception e) {
+			printWriter.println(timestamp + " The test has failed check your website for element changes");
+			System.out.println(timestamp +" The test has failed check your website for element changes");
+			printWriter.close();
+			driver.quit();
+		}
 			
 		}
 	

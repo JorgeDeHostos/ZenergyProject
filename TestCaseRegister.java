@@ -33,7 +33,7 @@ public class TestCaseRegister {
 		}
 		
 		WebDriver driver = new ChromeDriver();
-		
+		try {
 		//opens NewEgg
 		HomePage.OpenNewEgg(driver, printWriter, timestamp);
 		
@@ -62,6 +62,12 @@ public class TestCaseRegister {
 		modules.TestCasePassed(printWriter, timestamp);
 		printWriter.close();
 		
+		}catch(Exception e) {
+			printWriter.println(timestamp + " The test has failed check your website for element changes");
+			System.out.println(timestamp +" The test has failed check your website for element changes");
+			printWriter.close();
+			driver.quit();
+		}
 		
 }
 	
