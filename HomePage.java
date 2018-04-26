@@ -61,8 +61,19 @@ public class HomePage {
 		
 		//clicks on 72 deals link on the homepage
 		public static void ClickOnSeventyTwoDeals(WebDriver driver, JavascriptExecutor js, PrintWriter printWriter, Timestamp timestamp ) throws InterruptedException {
-			List <WebElement> SeventyTwoDeals = driver.findElements(By.cssSelector("a[href^='//www.newegg.com/DailyDeal.aspx?name=DailyDeal&cm_sp=Dailydeal-_-adlink-_-04252018"));
-			SeventyTwoDeals.get(0).click();
+			List <WebElement> SeventyTwoDeals = driver.findElements(By.cssSelector("a[href^='//www.newegg.com/"));
+			WebElement C =null;
+			for (WebElement SeventyTwo : SeventyTwoDeals) {
+				String List = SeventyTwo.getText();
+			
+				
+				if(List.contains("72")) {
+					C = SeventyTwo;
+					
+				}
+
+			}
+			C.click();
 			Thread.sleep(3000);
 			printWriter.println(timestamp + " Clicks on Seventy two deals on homepage");
 			System.out.println(timestamp + " Clicks on Seventy two deals on homepage");
